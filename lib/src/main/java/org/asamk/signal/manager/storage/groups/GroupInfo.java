@@ -57,12 +57,14 @@ public sealed abstract class GroupInfo permits GroupInfoV1, GroupInfoV2 {
     public abstract GroupPermission getPermissionSendMessage();
 
     public Set<RecipientId> getMembersWithout(RecipientId recipientId) {
-        return getMembers().stream().filter(member -> !member.equals(recipientId)).collect(Collectors.toSet());
+        return getMembers().stream()
+//                .filter(member -> !member.equals(recipientId))
+                .collect(Collectors.toSet());
     }
 
     public Set<RecipientId> getMembersIncludingPendingWithout(RecipientId recipientId) {
         return Stream.concat(getMembers().stream(), getPendingMembers().stream())
-                .filter(member -> !member.equals(recipientId))
+//                .filter(member -> !member.equals(recipientId))
                 .collect(Collectors.toSet());
     }
 
